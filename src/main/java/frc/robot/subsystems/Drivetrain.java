@@ -7,9 +7,10 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.RobotContainer;
 import frc.robot.RobotMap;
+import frc.robot.commands.DriveCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -22,16 +23,17 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  */
 public class Drivetrain extends SubsystemBase
 {
-    private Joystick m_joystick;
-    private DifferentialDrive m_drive;
+    public RobotContainer m_container;
+    public DifferentialDrive m_drive;
+    private DriveCommand m_driveCommand = new DriveCommand(this);
 
     /**
      * Instantiates a Drivetrain instance.
      */
-    public Drivetrain()
+    public Drivetrain(RobotContainer container)
     {
-        // First, instantiate our single Joystick.
-        m_joystick = new Joystick(RobotMap.Drivetrain.JOYSTICK);
+        // First, store the RobotContainer value.
+        m_container = container;
 
         // Instantiate each individual motor.
         SpeedController leftFrontMotor = new CANSparkMax(RobotMap.Drivetrain.LEFT_FRONT_MOTOR, MotorType.kBrushless);
@@ -48,12 +50,12 @@ public class Drivetrain extends SubsystemBase
     }
 
     /**
-     * The periodic method uses our differential drive to move the motors and drive the robot.
+     * Initializes our drive command & schedules it.
      */
     @Override
-    public void periodic()
+    public void register()
     {
-        // Use the current values of our joystick to arcade drive.
-        m_drive.arcadeDrive(m_joystick.getX(), m_joystick.getY());
+        // Schedule the drive command.
+        m_driveCommand.schedule();
     }
 }

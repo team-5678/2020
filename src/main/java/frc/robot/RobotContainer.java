@@ -7,9 +7,13 @@
 
 package frc.robot;
 
-import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Drivetrain;
+
+import java.util.Set;
+
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /**
  * RobotContainer represents the class which handles subsystems & commands for the robot.
@@ -17,32 +21,72 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer
 {
-    private final Drivetrain m_driveTrain = new Drivetrain();
-    private final ExampleCommand m_autoCommand = new ExampleCommand(m_driveTrain);
+    private Robot m_robot;
+    public Joystick m_joystick;
+    private final Drivetrain m_driveTrain = new Drivetrain(this);
+    private Set<SubsystemBase> m_subsystems;
 
     /**
      * Instantiates the RobotContainer instances and sets up some of the functions of the robot.
      */
-    public RobotContainer()
+    public RobotContainer(Robot robot)
     {
-        // Configure the button bindings
-        configureButtonBindings();
+        // Store the robot.
+        m_robot = robot;
+
+        // Initialize our joystick configuration.
+        initializeJoystick();
+
+        // Throw each of our subsystems into our set.
+        m_subsystems.add(m_driveTrain);
     }
 
     /**
-     * This method defines button->command mappings for the physical joystick.
+     * This method sets up the joystick & defines button->command mappings.
      */
-    private void configureButtonBindings()
+    private void initializeJoystick()
     {
+        // Instantiate the joystick.
+        m_joystick = new Joystick(RobotMap.JOYSTICK);
     }
 
     /**
-     * This method handles the periodic functions of the robot. Currently, all this does is invoke the drive train.
+     * This method sets each subsystem up for teleop mode.
+     * This calls each subsystem to schedule commands.
      */
-    public void periodic()
+    public void teleopInit()
     {
-        // Call the drive train's periodic method.
-        m_driveTrain.periodic();
+        // Call each subsystem to manage their command scheduling.
+        for (SubsystemBase subsystem : m_subsystems)
+        {
+            subsystem.register();
+        }
+    }
+
+    /**
+     * This method indicates if a command should stop based on the expected mode.
+     * @return whether to stop or not
+     */
+    public boolean flag(RobotMap.RobotModes mode)
+    {
+        if (mode == RobotMap.RobotModes.AUTONOMOUS && !m_robot.isAutonomous())
+        {
+            return true;
+        }
+        else if (mode == RobotMap.RobotModes.DISABLED && !m_robot.isDisabled())
+        {
+            return true;
+        }
+        else if (mode == RobotMap.RobotModes.TELEOP && !m_robot.isOperatorControl())
+        {
+            return true;
+        }
+        else if (mode == RobotMap.RobotModes.TEST && !m_robot.isTest())
+        {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -52,7 +96,7 @@ public class RobotContainer
      */
     public Command getAutonomousCommand()
     {
-        // An ExampleCommand will run in autonomous.
-        return m_autoCommand;
+        // There is currently no autonomous command.
+        return null;
     }
 }

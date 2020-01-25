@@ -14,15 +14,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
  */
 public class DriverStation extends SubsystemBase
 {
-  /**
-   * Instantiates a DriverStation instance.
-   */
-  public DriverStation()
-  {
-  }
+    /**
+     * Instantiates a DriverStation instance.
+     */
+    public DriverStation()
+    {
+    }
 
-  @Override
-  public void periodic()
-  {
-  }
+    @Override
+    public void periodic()
+    {
+    }
 }
