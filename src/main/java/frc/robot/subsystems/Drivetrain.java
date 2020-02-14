@@ -9,7 +9,6 @@ package frc.robot.subsystems;
 
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -22,22 +21,20 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  */
 public class Drivetrain extends SubsystemBase
 {
-    private Joystick m_joystick;
     private DifferentialDrive m_drive;
+    private double robotSpeed = RobotMap.Drivetrain.DriveSpeeds.HALF_SPEED;
 
     /**
-     * Instantiates a Drivetrain instance.
+     * initializes our drivetrain instance.
      */
     public Drivetrain()
     {
-        // First, instantiate our single Joystick.
-        m_joystick = new Joystick(RobotMap.Drivetrain.JOYSTICK);
 
         // Instantiate each individual motor.
-        SpeedController leftFrontMotor = new CANSparkMax(RobotMap.Drivetrain.LEFT_FRONT_MOTOR, MotorType.kBrushless);
-        SpeedController rightFrontMotor = new CANSparkMax(RobotMap.Drivetrain.RIGHT_FRONT_MOTOR, MotorType.kBrushless);
-        SpeedController leftRearMotor = new CANSparkMax(RobotMap.Drivetrain.LEFT_REAR_MOTOR, MotorType.kBrushless);
-        SpeedController rightRearMotor = new CANSparkMax(RobotMap.Drivetrain.RIGHT_REAR_MOTOR, MotorType.kBrushless);
+        SpeedController leftFrontMotor = new CANSparkMax(RobotMap.Drivetrain.DriveMotor.LEFT_FRONT_MOTOR, MotorType.kBrushless);
+        SpeedController rightFrontMotor = new CANSparkMax(RobotMap.Drivetrain.DriveMotor.RIGHT_FRONT_MOTOR, MotorType.kBrushless);
+        SpeedController leftRearMotor = new CANSparkMax(RobotMap.Drivetrain.DriveMotor.LEFT_REAR_MOTOR, MotorType.kBrushless);
+        SpeedController rightRearMotor = new CANSparkMax(RobotMap.Drivetrain.DriveMotor.RIGHT_REAR_MOTOR, MotorType.kBrushless);
 
         // Now, group those motors into speed controller groups based on whether they are on the right or left sides.
         SpeedControllerGroup left = new SpeedControllerGroup(leftFrontMotor, leftRearMotor);
@@ -48,12 +45,28 @@ public class Drivetrain extends SubsystemBase
     }
 
     /**
-     * The periodic method uses our differential drive to move the motors and drive the robot.
+     * This method uses our differential drive to move the motors and drive the robot.
      */
-    @Override
-    public void periodic()
-    {
-        // Use the current values of our joystick to arcade drive.
-        m_drive.arcadeDrive(m_joystick.getX(), m_joystick.getY());
-    }
+    
+     public void arcadeDrive(double xSpeed, double zRotation)
+     {
+        m_drive.arcadeDrive(xSpeed * robotSpeed, zRotation * robotSpeed);
+     }
+
+     /**
+      * Stops the motors on the drivetrain
+      */
+     public void stop()
+     {
+        m_drive.stopMotor();
+     }
+
+     /**
+      * Sets the speed of the robot by using the speed set command.
+      * @param speed imported speed from the change speed command, is set to the robotspeed instance var.
+      */
+     public void setSpeed(double speed)
+     {
+         this.robotSpeed = speed;
+     }
 }

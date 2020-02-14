@@ -7,9 +7,21 @@
 
 package frc.robot;
 
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
+
+// Sub system imports
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.DriverStation;
+import frc.robot.subsystems.Shooter;
+
+// Command imports
+import frc.robot.commands.ActivateIntake;
+import frc.robot.commands.ReleaseIntake;
+import frc.robot.commands.SpeedChange;
+import frc.robot.commands.Autonomous;
+import frc.robot.commands.Drive;
+import frc.robot.commands.ShootBall;
 
 /**
  * RobotContainer represents the class which handles subsystems & commands for the robot.
@@ -17,8 +29,16 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer
 {
+    // sub system inits
     private final Drivetrain m_driveTrain = new Drivetrain();
-    private final ExampleCommand m_autoCommand = new ExampleCommand(m_driveTrain);
+    private final Intake m_intake = new Intake();
+    private final DriverStation m_drivestation = new DriverStation();
+    private final Shooter m_shooter = new Shooter();
+
+    // Command inits
+    private final Drive m_drive = new Drive(m_driveTrain, m_drivestation);
+    private final Autonomous m_autoCommand = new Autonomous();
+
 
     /**
      * Instantiates the RobotContainer instances and sets up some of the functions of the robot.
@@ -27,13 +47,27 @@ public class RobotContainer
     {
         // Configure the button bindings
         configureButtonBindings();
+
     }
 
     /**
-     * This method defines button->command mappings for the physical joystick.
+     * This function runs and initializes commands when a certain button is pressed
      */
     private void configureButtonBindings()
     {
+        // Intake triggers button triggers
+        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.INTAKE_BUTTON).whenPressed(new ActivateIntake(m_intake));
+        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.REVERSE_BUTTON).whenPressed(new ReleaseIntake(m_intake));
+
+        // Drive speed change button triggers
+        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.QUARTER_SPEED_BUTTON).whenPressed(new SpeedChange(m_driveTrain, RobotMap.Drivetrain.DriveSpeeds.QUARTER_SPEED));
+        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.HALF_SPEED_BUTTON).whenPressed(new SpeedChange(m_driveTrain, RobotMap.Drivetrain.DriveSpeeds.HALF_SPEED));
+        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.THREE_FOURTHS_SPEED_BUTTON).whenPressed(new SpeedChange(m_driveTrain, RobotMap.Drivetrain.DriveSpeeds.THREE_FOURTHS_SPEED));
+        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.FULL_SPEED_BUTTON).whenPressed(new SpeedChange(m_driveTrain, RobotMap.Drivetrain.DriveSpeeds.FULL_SPEED));
+
+        // Shooter triggers
+        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.SHOOT_BUTTON).whenPressed(new ShootBall(m_shooter));
+
     }
 
     /**
@@ -41,18 +75,26 @@ public class RobotContainer
      */
     public void periodic()
     {
-        // Call the drive train's periodic method.
-        m_driveTrain.periodic();
+    
     }
 
     /**
-     * This method returns the main autonomous command.
-     *
-     * @return the command to run in autonomous
+     * Returns the command that wil be ran during autonomous
+     * @return autonomous command
      */
-    public Command getAutonomousCommand()
+
+   public Command getAutonomousCommand()
     {
-        // An ExampleCommand will run in autonomous.
+        // An example command will run in autonomous.
         return m_autoCommand;
+    } 
+    
+    /**
+     * Returns the command that will be ran during the teleop period
+     * @return teleop command
+     */
+    public Command getTeleOpCommand()
+    {
+        return m_drive;
     }
 }

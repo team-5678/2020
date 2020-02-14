@@ -8,21 +8,51 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.RobotMap;
+
 
 /**
  * The DriverStation class is the subsystem which sets up the driver station of the robot.
  */
 public class DriverStation extends SubsystemBase
 {
+  private Joystick m_joystick;
   /**
    * Instantiates a DriverStation instance.
    */
   public DriverStation()
   {
+    m_joystick = new Joystick(RobotMap.Joystick.PORT);
   }
 
-  @Override
-  public void periodic()
+  /**
+   * Gets our joystick's current X axis position
+   * @return X axis position
+   */
+  public double getXaxis()
   {
+    return m_joystick.getX();
+  }
+
+  /**
+   * Gets our joystick's Y axis position
+   * @return Y axis position
+   */
+  public double getYaxis()
+  {
+    return m_joystick.getY();
+  }
+
+  /**
+   * Binds a button number as a joystick button object. Can be used to bind a command to a certain button.
+   * @return joystick button instance
+   */
+  public JoystickButton getJoystickButton(int button)
+  {
+    return new JoystickButton(m_joystick, button);
   }
 }
+
+
