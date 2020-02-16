@@ -48,12 +48,13 @@ public class ReleaseIntake extends CommandBase
     public void end(boolean interrupted)
     {
         m_intake.stop();
+        System.out.println("\n Releasing Intake Command has ended\n");
     }
 
     // Returns true when the command should end. (default)
     @Override
     public boolean isFinished()
     {
-        return false;
+        return true;
     }
 }

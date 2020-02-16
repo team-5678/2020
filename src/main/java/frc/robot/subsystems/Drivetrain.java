@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -29,7 +30,6 @@ public class Drivetrain extends SubsystemBase
      */
     public Drivetrain()
     {
-
         // Instantiate each individual motor.
         SpeedController leftFrontMotor = new CANSparkMax(RobotMap.Drivetrain.DriveMotor.LEFT_FRONT_MOTOR, MotorType.kBrushless);
         SpeedController rightFrontMotor = new CANSparkMax(RobotMap.Drivetrain.DriveMotor.RIGHT_FRONT_MOTOR, MotorType.kBrushless);
@@ -51,6 +51,8 @@ public class Drivetrain extends SubsystemBase
      public void arcadeDrive(double xSpeed, double zRotation)
      {
         m_drive.arcadeDrive(xSpeed * robotSpeed, zRotation * robotSpeed);
+        SmartDashboard.putNumber("Current X speed", (robotSpeed * xSpeed)); // testing line, trying to see what works and what doesnt
+        SmartDashboard.putNumber("Current Z rotation", (robotSpeed * zRotation));
      }
 
      /**
@@ -67,6 +69,7 @@ public class Drivetrain extends SubsystemBase
       */
      public void setSpeed(double speed)
      {
-         this.robotSpeed = speed;
+        this.robotSpeed = speed;
+        SmartDashboard.putNumber("Current Speed: ", this.robotSpeed);
      }
 }

@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Spark;
 
 /**
- * A subsystem that repersents the ball intake on the robot.
+ * A subsystem that repersents the ball shooter on the robot.
  */
 public class Shooter extends SubsystemBase
 {

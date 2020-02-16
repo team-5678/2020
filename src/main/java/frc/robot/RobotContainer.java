@@ -8,7 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
-
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 // Sub system imports
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
@@ -47,6 +47,7 @@ public class RobotContainer
     {
         // Configure the button bindings
         configureButtonBindings();
+        CommandScheduler.getInstance().setDefaultCommand(m_driveTrain, m_drive);
 
     }
 
@@ -71,7 +72,7 @@ public class RobotContainer
     }
 
     /**
-     * This method handles the periodic functions of the robot. Currently, all this does is invoke the drive train.
+     * This method handles the periodic functions of the robot. 
      */
     public void periodic()
     {
@@ -96,5 +97,5 @@ public class RobotContainer
     public Command getTeleOpCommand()
     {
         return m_drive;
-    }
+    } 
 }

@@ -36,17 +36,30 @@ public class SpeedChange extends CommandBase
         this.m_drivetrain = driveTrain;
     }
 
-    // Sets the speed varible to the drive train subsystem
+    @Override
+    public void initialize()
+    {
+        m_drivetrain.setSpeed(this.speed);
+
+    }
+
+    /*/ Sets the speed varible to the drive train subsystem
     @Override
     public void execute()
     {
         m_drivetrain.setSpeed(this.speed);
     }
+*/
+    @Override
+    public void end(boolean interrupted)
+    {
+        System.out.println("\nSpeed Command Ended\n");
+    }
     
-    // Returns true when the command should end. (Command never ends)
+    // Returns true when the command should end.
     @Override
     public boolean isFinished()
     {
-        return false;
+        return true;
     }
 }

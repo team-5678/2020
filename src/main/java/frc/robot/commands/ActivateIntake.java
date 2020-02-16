@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
@@ -40,7 +41,6 @@ public class ActivateIntake extends CommandBase
     @Override
     public void execute()
     {
-
     }
 
     // Stops the motors when the command is interrupted (when the button isn't held down).
@@ -48,12 +48,13 @@ public class ActivateIntake extends CommandBase
     public void end(boolean interrupted)
     {
         m_intake.stop();
+        System.out.println("\nActivate Intake has ended\n");
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished()
     {
-        return false;
+        return true;
     }
 }
