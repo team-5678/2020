@@ -34,13 +34,7 @@ public class ReleaseIntake extends CommandBase
     public void initialize()
     {
         m_intake.releaseBall();
-    }
-
-    // Called every time the scheduler runs while the command is scheduled. (default and empty, not needed in this command)
-    @Override
-    public void execute()
-    {
-         
+        System.out.println("\nIntake has been released\n");
     }
 
     // Stops the motors when the command is interrupted (when the button isn't held down).

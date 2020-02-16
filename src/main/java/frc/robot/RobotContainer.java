@@ -47,7 +47,7 @@ public class RobotContainer
     {
         // Configure the button bindings
         configureButtonBindings();
-        CommandScheduler.getInstance().setDefaultCommand(m_driveTrain, m_drive);
+        CommandScheduler.getInstance().setDefaultCommand(m_driveTrain, m_drive); // sets drive to always be running in the scheduler 
 
     }
 
@@ -57,8 +57,8 @@ public class RobotContainer
     private void configureButtonBindings()
     {
         // Intake triggers button triggers
-        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.INTAKE_BUTTON).whenPressed(new ActivateIntake(m_intake));
-        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.REVERSE_BUTTON).whenPressed(new ReleaseIntake(m_intake));
+        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.INTAKE_BUTTON).whileHeld(new ActivateIntake(m_intake));
+        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.REVERSE_BUTTON).whileHeld(new ReleaseIntake(m_intake));
 
         // Drive speed change button triggers
         m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.QUARTER_SPEED_BUTTON).whenPressed(new SpeedChange(m_driveTrain, RobotMap.Drivetrain.DriveSpeeds.QUARTER_SPEED));

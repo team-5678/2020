@@ -20,7 +20,7 @@ public class ActivateIntake extends CommandBase
     private final Intake m_intake;
 
     /**
-     * Creates a new ExampleCommand.
+     * Creates an Actvating Intake commmand instance.
      *
      * @param subsystem The subsystem used by this command.
      */
@@ -35,13 +35,9 @@ public class ActivateIntake extends CommandBase
     public void initialize()
     {
         m_intake.intakeBall();
+        System.out.println("\nIntake has been activated\n");
     }
 
-    // Called every time the scheduler runs while the command is scheduled. (default and empty, not needed in this command)
-    @Override
-    public void execute()
-    {
-    }
 
     // Stops the motors when the command is interrupted (when the button isn't held down).
     @Override
