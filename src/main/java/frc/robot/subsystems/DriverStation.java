@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.RobotMap;
 
@@ -52,6 +53,16 @@ public class DriverStation extends SubsystemBase
   public JoystickButton getJoystickButton(int button)
   {
     return new JoystickButton(m_joystick, button);
+  }
+
+  public POVButton getPOVButton(int povAngle)
+  {
+    return new POVButton(m_joystick, povAngle);
+  }
+
+  public Joystick getJoystick()
+  {
+    return m_joystick;
   }
 }
 

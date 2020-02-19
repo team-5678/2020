@@ -36,6 +36,7 @@ public class ShootBall extends CommandBase
     public void initialize()
     {
         m_shooter.shoot();
+        System.out.println("Shooter has ran!\n");
     }
 
 
@@ -45,12 +46,13 @@ public class ShootBall extends CommandBase
     public void end(boolean interrupted)
     {
         m_shooter.stop();
+        System.out.println("Shooter has stopped!\n");
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished()
     {
-        return false;
+        return true;
     }
 }

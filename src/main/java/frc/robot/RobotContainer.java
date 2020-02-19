@@ -57,8 +57,8 @@ public class RobotContainer
     private void configureButtonBindings()
     {
         // Intake triggers button triggers
-        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.INTAKE_BUTTON).whileHeld(new ActivateIntake(m_intake));
-        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.REVERSE_BUTTON).whileHeld(new ReleaseIntake(m_intake));
+        m_drivestation.getPOVButton(RobotMap.Joystick.Buttons.INTAKE_BUTTON).whileHeld(new ActivateIntake(m_intake));
+        m_drivestation.getPOVButton(RobotMap.Joystick.Buttons.REVERSE_BUTTON).whileHeld(new ReleaseIntake(m_intake));
 
         // Drive speed change button triggers
         m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.QUARTER_SPEED_BUTTON).whenPressed(new SpeedChange(m_driveTrain, RobotMap.Drivetrain.DriveSpeeds.QUARTER_SPEED));
@@ -67,8 +67,7 @@ public class RobotContainer
         m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.FULL_SPEED_BUTTON).whenPressed(new SpeedChange(m_driveTrain, RobotMap.Drivetrain.DriveSpeeds.FULL_SPEED));
 
         // Shooter triggers
-        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.SHOOT_BUTTON).whenPressed(new ShootBall(m_shooter));
-
+        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.SHOOT_BUTTON).whileHeld(new ShootBall(m_shooter));
     }
 
     /**

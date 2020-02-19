@@ -9,11 +9,13 @@ import edu.wpi.first.wpilibj.Spark;
  */
 public class Shooter extends SubsystemBase
 {
-    private final Spark m_shooterMotor;
+    private final Spark shooterMotorLeft;
+    private final Spark shooterMotorRight;
 
     public Shooter()
     {
-        m_shooterMotor = new Spark(RobotMap.Shooter.MOTOR);
+        shooterMotorLeft = new Spark(RobotMap.Shooter.MOTOR_LEFT);
+        shooterMotorRight = new Spark(RobotMap.Shooter.MOTOR_RIGHT);
     }
 
     /**
@@ -22,13 +24,15 @@ public class Shooter extends SubsystemBase
 
     public void shoot()
     {
-        m_shooterMotor.set(RobotMap.Shooter.MOTOR_SPEED);
+        shooterMotorLeft.set(RobotMap.Shooter.MOTOR_SPEED);
+        shooterMotorRight.set(-RobotMap.Shooter.MOTOR_SPEED);
     }
     
 
     // Stops the motor
     public void stop()
     {
-        m_shooterMotor.stopMotor();
+        shooterMotorLeft.stopMotor();
+        shooterMotorRight.stopMotor();
     }
 }

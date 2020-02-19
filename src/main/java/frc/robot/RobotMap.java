@@ -34,8 +34,9 @@ public final class RobotMap
 
     public static class Shooter
     {
-        public static final int MOTOR = 10; // temp posistion
-        public static final double MOTOR_SPEED = 1.0; // temp posistion
+        public static final int MOTOR_LEFT = 10; // temp posistion
+        public static final int MOTOR_RIGHT = 9; // temp posistion
+        public static final double MOTOR_SPEED = 1.0; // temp posistion, runs at full speed, be careful!
         
     }
 
@@ -47,8 +48,8 @@ public final class RobotMap
         public static class Buttons
         {
             // Intake related buttons
-            public static final int INTAKE_BUTTON = 5; // temp posistion
-            public static final int REVERSE_BUTTON = 6; // temp posistion
+            public static final int INTAKE_BUTTON = 0; // temp posistion, stright up of the POV hat
+            public static final int REVERSE_BUTTON = 180; // temp posistion, stright down of the POV hat
 
             // Speed change buttons
             public static final int QUARTER_SPEED_BUTTON = 1; // temp posistion
@@ -57,7 +58,7 @@ public final class RobotMap
             public static final int FULL_SPEED_BUTTON = 4; // temp posistion
 
             // Shooter related buttons
-            public static final int SHOOT_BUTTON = 3; // temp posistion
+            public static final int SHOOT_BUTTON = 10; // temp posistion
         
         }
     }
