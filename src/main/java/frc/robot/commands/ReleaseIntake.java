@@ -31,7 +31,7 @@ public class ReleaseIntake extends CommandBase
 
     // Is ran once on activation. Releases from the intake.
     @Override
-    public void initialize()
+    public void execute()
     {
         m_intake.releaseBall();
         System.out.println("\nIntake has been released\n");
@@ -49,6 +49,6 @@ public class ReleaseIntake extends CommandBase
     @Override
     public boolean isFinished()
     {
-        return true;
+        return false;
     }
 }

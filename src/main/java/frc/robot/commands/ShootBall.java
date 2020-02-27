@@ -33,7 +33,7 @@ public class ShootBall extends CommandBase
 
     // Runs the motors to shoot the ball, to be called by a button trigger
     @Override
-    public void initialize()
+    public void execute()
     {
         m_shooter.shoot();
         System.out.println("Shooter has ran!\n");
@@ -53,6 +53,6 @@ public class ShootBall extends CommandBase
     @Override
     public boolean isFinished()
     {
-        return true;
+        return false;
     }
 }

@@ -31,7 +31,7 @@ public class ActivateIntake extends CommandBase
 
     // Called when the command is initially scheduled.
     @Override
-    public void initialize()
+    public void execute()
     {
         m_intake.intakeBall();
         System.out.println("\nIntake has been activated\n");
@@ -50,6 +50,6 @@ public class ActivateIntake extends CommandBase
     @Override
     public boolean isFinished()
     {
-        return true;
+        return false;
     }
 }

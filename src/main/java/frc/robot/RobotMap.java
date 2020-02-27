@@ -10,10 +10,10 @@ public final class RobotMap
     {
         public static class DriveMotor
         {
-            public static final int LEFT_FRONT_MOTOR = 0;
-            public static final int RIGHT_FRONT_MOTOR = 1;
-            public static final int LEFT_REAR_MOTOR = 2;
-            public static final int RIGHT_REAR_MOTOR = 3;
+            public static final int LEFT_FRONT_MOTOR = 1;
+            public static final int RIGHT_FRONT_MOTOR = 2;
+            public static final int LEFT_REAR_MOTOR = 3;
+            public static final int RIGHT_REAR_MOTOR = 4;
         }
 
         public static class DriveSpeeds
@@ -28,17 +28,29 @@ public final class RobotMap
 
     public static class Intake
     {
-        public static final int MOTOR = 1; // temp posistion
+        public static final int MOTOR_PORT = 1; 
         public static final double MOTOR_SPEED = 0.5;
     }
 
     public static class Shooter
     {
-        public static final int MOTOR_LEFT = 0; // temp posistion
-        public static final int MOTOR_RIGHT = 9; // temp posistion
+        public static final int MOTOR_PORT = 0; // MAKE SURE ELECTRICAL DID THEIR JOB, (y split the sparks, reverse polarity on one)
         public static final double MOTOR_SPEED = 1.0; // temp posistion, runs at full speed, be careful!
-        
     }
+
+    public static class Climber
+    {
+        public static final int MOTOR_PORT = 2; 
+        public static final double MOTOR_SPEED = 0.25; // temp speed
+    }
+
+    public static class ColorWheel
+    {
+        public static final int MOTOR_PORT = 3; 
+        public static final double MOTOR_SPEED = 0.25;
+    }
+
+    // Spare spark on port 4
 
     public static class Joystick
     {
@@ -58,12 +70,7 @@ public final class RobotMap
             public static final int FULL_SPEED_BUTTON = 4; // temp posistion
 
             // Shooter related buttons
-            public static final int SHOOT_BUTTON = 10; // temp posistion
-        
+            public static final int SHOOT_BUTTON = 14; // temp posistion
         }
     }
-
-
-
-    
 }

@@ -13,7 +13,7 @@ public class Intake extends SubsystemBase
 
     public Intake()
     {
-        m_intakeMotor = new Spark(RobotMap.Intake.MOTOR);
+        m_intakeMotor = new Spark(RobotMap.Intake.MOTOR_PORT);
     }
 
     /**
