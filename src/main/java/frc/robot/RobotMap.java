@@ -28,13 +28,13 @@ public final class RobotMap
 
     public static class Intake
     {
-        public static final int MOTOR = 4; // temp posistion
+        public static final int MOTOR = 1; // temp posistion
         public static final double MOTOR_SPEED = 0.5;
     }
 
     public static class Shooter
     {
-        public static final int MOTOR_LEFT = 10; // temp posistion
+        public static final int MOTOR_LEFT = 0; // temp posistion
         public static final int MOTOR_RIGHT = 9; // temp posistion
         public static final double MOTOR_SPEED = 1.0; // temp posistion, runs at full speed, be careful!
         
