@@ -5,11 +5,10 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 
 /**
@@ -20,15 +19,17 @@ public class ShootBall extends CommandBase
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
     private Shooter m_shooter;
+    private Intake m_intake;
 
     /**
      * Creates a new instance of our ball shooter command.
      * @param shooter use the shooter subsystem
      */
-    public ShootBall(Shooter shooter)
+    public ShootBall(Shooter shooter, Intake intake)
     {
-        addRequirements(shooter);
+        addRequirements(shooter, intake);
         m_shooter = shooter;
+        m_intake = intake;
     }
 
     // Runs the motors to shoot the ball, to be called by a button trigger
@@ -36,7 +37,8 @@ public class ShootBall extends CommandBase
     public void execute()
     {
         m_shooter.shoot();
-        System.out.println("Shooter has ran!\n");
+        m_intake.intakeBall();
+        System.out.println("Shooter and intake have ran!\n");
     }
 
 
@@ -46,7 +48,8 @@ public class ShootBall extends CommandBase
     public void end(boolean interrupted)
     {
         m_shooter.stop();
-        System.out.println("Shooter has stopped!\n");
+        m_intake.stop();
+        System.out.println("Shooter and intake have stopped!\n");
     }
 
     // Returns true when the command should end.

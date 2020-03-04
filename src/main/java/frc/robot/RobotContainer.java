@@ -67,7 +67,7 @@ public class RobotContainer
         m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.FULL_SPEED_BUTTON).whenPressed(new SpeedChange(m_driveTrain, RobotMap.Drivetrain.DriveSpeeds.FULL_SPEED));
 
         // Shooter triggers
-        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.SHOOT_BUTTON).whileHeld(new ShootBall(m_shooter));
+        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.SHOOT_BUTTON).whileHeld(new ShootBall(m_shooter, m_intake));
     }
 
     /**
