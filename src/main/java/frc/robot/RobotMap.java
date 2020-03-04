@@ -29,7 +29,7 @@ public final class RobotMap
     public static class Intake
     {
         public static final int MOTOR_PORT = 1; 
-        public static final double MOTOR_SPEED = 0.5;
+        public static final double MOTOR_SPEED = 0.25;
     }
 
     public static class Shooter

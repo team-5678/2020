@@ -22,7 +22,7 @@ public class Intake extends SubsystemBase
     public void intakeBall()
     {
         
-        m_intakeMotor.set(RobotMap.Intake.MOTOR_SPEED); // can be adjusted later if needed
+        m_intakeMotor.set(-RobotMap.Intake.MOTOR_SPEED); // can be adjusted later if needed
     }
 
     /**
@@ -31,7 +31,7 @@ public class Intake extends SubsystemBase
     public void releaseBall()
     {
 
-        m_intakeMotor.set(-RobotMap.Intake.MOTOR_SPEED); // can be adjusted later if needed
+        m_intakeMotor.set(RobotMap.Intake.MOTOR_SPEED); // can be adjusted later if needed
     }
 
     // Stops the motor
