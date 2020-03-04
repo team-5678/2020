@@ -64,13 +64,13 @@ public final class RobotMap
             public static final int REVERSE_BUTTON = 180; // temp position, stright down of the POV hat
 
             // Speed change buttons
-            public static final int QUARTER_SPEED_BUTTON = 1; // temp position
+            //public static final int QUARTER_SPEED_BUTTON = 1; // k uh this is gonna be disabled for a while, button will used for shooter
             public static final int HALF_SPEED_BUTTON = 2; // temp position
             public static final int THREE_FOURTHS_SPEED_BUTTON = 3; // temp position
             public static final int FULL_SPEED_BUTTON = 4; // temp position
 
             // Shooter related buttons
-            public static final int SHOOT_BUTTON = 14; // temp position
+            public static final int SHOOT_BUTTON = 1; // temp position
         }
     }
 }
