@@ -14,6 +14,7 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.DriverStation;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Limelight;
 
 // Command imports
 import frc.robot.commands.ActivateIntake;
@@ -34,6 +35,7 @@ public class RobotContainer
     private final Intake m_intake = new Intake();
     private final DriverStation m_drivestation = new DriverStation();
     private final Shooter m_shooter = new Shooter();
+    private final Limelight m_limelight = new Limelight();
 
     // Command inits
     private final Drive m_drive = new Drive(m_driveTrain, m_drivestation);
