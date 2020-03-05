@@ -59,11 +59,6 @@ public class DriverStation extends SubsystemBase
   {
     return new POVButton(m_joystick, povAngle);
   }
-
-  public Joystick getJoystick()
-  {
-    return m_joystick;
-  }
 }
 
 

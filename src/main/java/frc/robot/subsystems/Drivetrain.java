@@ -10,10 +10,12 @@ package frc.robot.subsystems;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.CAN;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -25,6 +27,13 @@ public class Drivetrain extends SubsystemBase
     private DifferentialDrive m_drive;
     private double robotSpeed = RobotMap.Drivetrain.DriveSpeeds.HALF_SPEED;
 
+    // encoder objects
+    private CANEncoder leftFrontEncoder;
+    private CANEncoder rightFrontEncoder;
+    private CANEncoder leftRearEncoder;
+    private CANEncoder rightRearEncoder;
+    
+
     /**
      * initializes our drivetrain instance.
      */
@@ -35,6 +44,12 @@ public class Drivetrain extends SubsystemBase
         SpeedController rightFrontMotor = new CANSparkMax(RobotMap.Drivetrain.DriveMotor.RIGHT_FRONT_MOTOR, MotorType.kBrushless);
         SpeedController leftRearMotor = new CANSparkMax(RobotMap.Drivetrain.DriveMotor.LEFT_REAR_MOTOR, MotorType.kBrushless);
         SpeedController rightRearMotor = new CANSparkMax(RobotMap.Drivetrain.DriveMotor.RIGHT_REAR_MOTOR, MotorType.kBrushless);
+
+        leftFrontEncoder = ((CANSparkMax) leftFrontMotor).getEncoder();
+        rightFrontEncoder = ((CANSparkMax) rightFrontMotor).getEncoder();
+        leftRearEncoder = ((CANSparkMax) leftRearMotor).getEncoder();
+        rightRearEncoder = ((CANSparkMax) rightRearMotor).getEncoder();
+
 
         // Now, group those motors into speed controller groups based on whether they are on the right or left sides.
         SpeedControllerGroup left = new SpeedControllerGroup(leftFrontMotor, leftRearMotor);
@@ -70,6 +85,29 @@ public class Drivetrain extends SubsystemBase
      public void setSpeed(double speed)
      {
         this.robotSpeed = speed;
-        SmartDashboard.putNumber("Current Speed: ", this.robotSpeed);
+        SmartDashboard.putNumber("Speed Modifier: ", this.robotSpeed);
      }
+
+
+
+     public CANEncoder getEncode(int motorID)
+     {
+         if (motorID == RobotMap.Drivetrain.DriveMotor.LEFT_FRONT_MOTOR) {
+            return leftFrontEncoder;
+
+         } else if (motorID == RobotMap.Drivetrain.DriveMotor.LEFT_REAR_MOTOR) {
+            return leftRearEncoder;
+
+         } else if (motorID == RobotMap.Drivetrain.DriveMotor.RIGHT_FRONT_MOTOR) {
+            return rightFrontEncoder;
+
+         } else if (motorID == RobotMap.Drivetrain.DriveMotor.RIGHT_REAR_MOTOR) {
+            return rightRearEncoder;
+
+         } else {
+            return null;
+         }
+     }
+
+     
 }
