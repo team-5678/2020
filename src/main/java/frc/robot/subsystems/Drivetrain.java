@@ -92,21 +92,19 @@ public class Drivetrain extends SubsystemBase
 
      public CANEncoder getEncode(int motorID)
      {
-         if (motorID == RobotMap.Drivetrain.DriveMotor.LEFT_FRONT_MOTOR) {
-            return leftFrontEncoder;
+        switch(motorID)
+        {
+           case RobotMap.Drivetrain.DriveMotor.LEFT_FRONT_MOTOR : return leftFrontEncoder;
 
-         } else if (motorID == RobotMap.Drivetrain.DriveMotor.LEFT_REAR_MOTOR) {
-            return leftRearEncoder;
+           case RobotMap.Drivetrain.DriveMotor.RIGHT_FRONT_MOTOR : return rightFrontEncoder;
 
-         } else if (motorID == RobotMap.Drivetrain.DriveMotor.RIGHT_FRONT_MOTOR) {
-            return rightFrontEncoder;
+           case RobotMap.Drivetrain.DriveMotor.LEFT_REAR_MOTOR : return leftRearEncoder;
 
-         } else if (motorID == RobotMap.Drivetrain.DriveMotor.RIGHT_REAR_MOTOR) {
-            return rightRearEncoder;
+           case RobotMap.Drivetrain.DriveMotor.RIGHT_REAR_MOTOR : return rightRearEncoder;
 
-         } else {
-            return null;
-         }
+           default : return null;
+
+        }
      }
 
      
