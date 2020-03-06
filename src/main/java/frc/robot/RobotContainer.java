@@ -39,7 +39,7 @@ public class RobotContainer
 
     // Command inits
     private final Drive m_drive = new Drive(m_driveTrain, m_drivestation);
-    private final Autonomous m_autoCommand = new Autonomous();
+    private final Autonomous m_autoCommand = new Autonomous(m_shooter, m_driveTrain);
 
 
     /**
