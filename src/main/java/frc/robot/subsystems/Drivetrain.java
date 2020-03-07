@@ -24,7 +24,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Drivetrain extends SubsystemBase
 {
     private DifferentialDrive m_drive;
-    private double robotSpeed = RobotMap.Drivetrain.DriveSpeeds.HALF_SPEED;
+    private double robotSpeed = RobotMap.Drivetrain.DriveSpeeds.FULL_SPEED;
 
     // encoder objects
     private CANEncoder leftFrontEncoder;

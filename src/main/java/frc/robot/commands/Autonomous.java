@@ -21,7 +21,7 @@ public class Autonomous extends CommandBase
 {
     private Shooter m_shooter;
     private Drivetrain m_drive;
-    private double m_autoMode;
+    private boolean m_driveMode;
     private boolean m_finished;
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
@@ -40,20 +40,20 @@ public class Autonomous extends CommandBase
     public void initialize()
     {
         // This gets the autonomous mode from SmartDashboard.
-        // 0 = do nothing, 1 = drive, 2 = shoot.
-        m_autoMode = SmartDashboard.getNumber("Auto Mode", 0.0);
+        // 0 = drive, 1 = shoot.
+        m_driveMode = SmartDashboard.getBoolean("Drive Mode", false);
     }
 
     
     @Override
     public void execute()
     {
-        if (m_autoMode == 1)
+        if (!m_driveMode)
         {
             // Drive forward at quarter speed.
             m_drive.arcadeDrive(RobotMap.Drivetrain.DriveSpeeds.QUARTER_SPEED, 0.0);
         }
-        else if (m_autoMode == 2)
+        else
         {
             // Run the shooter.
             m_shooter.shoot();
