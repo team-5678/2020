@@ -90,7 +90,7 @@ public class Drivetrain extends SubsystemBase
 
 
 
-     public CANEncoder getEncode(int motorID)
+     public CANEncoder getEncoderInstance(int motorID)
      {
         switch(motorID)
         {
