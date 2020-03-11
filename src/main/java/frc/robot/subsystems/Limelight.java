@@ -26,6 +26,5 @@ public class Limelight extends SubsystemBase
 
         // Display camera stream to ShuffleBoard
         //SmartDashboard.putNumber("Camera", NetworkTableInstance.getDefault().getTable("limelight"));
-
     }
 }
