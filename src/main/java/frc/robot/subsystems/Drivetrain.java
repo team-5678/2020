@@ -25,6 +25,7 @@ public class Drivetrain extends SubsystemBase
 {
     private DifferentialDrive m_drive;
     private double robotSpeed = RobotMap.Drivetrain.DriveSpeeds.FULL_SPEED;
+    private int m_driveDirection = 1;
 
     // encoder objects
     private CANEncoder leftFrontEncoder;
@@ -61,19 +62,37 @@ public class Drivetrain extends SubsystemBase
     /**
      * This method uses our differential drive to move the motors and drive the robot.
      */
-    
      public void arcadeDrive(double xSpeed, double zRotation)
      {
-        m_drive.arcadeDrive(xSpeed * robotSpeed, zRotation * robotSpeed);
-        SmartDashboard.putNumber("Current X speed", (robotSpeed * xSpeed)); // testing line, trying to see what works and what doesnt
-        SmartDashboard.putNumber("Current Z rotation", (robotSpeed * zRotation));
+        // This drives the X axis of the robot based upon either an assigned speed
+        // (between 0.0-1.0 for forward or opposite range for backwards)
+        // or the joystick's Y axis. Same goes for the Y axis of the robot.
+        // Speeds or rotation doubles are multiplied by a speed setting we want to limit by.
+        // The final speed is multiplied by the direction
+        // (times 1 for normal direction, -1 for opposite).
+        m_drive.arcadeDrive((xSpeed * robotSpeed) * m_driveDirection, (zRotation * robotSpeed) * m_driveDirection);
+
+        // Drive numbers for debugging/statistics:
+        SmartDashboard.putNumber("Current X speed", ((robotSpeed * xSpeed) * m_driveDirection));
+        SmartDashboard.putNumber("Current Z rotation", ((robotSpeed * zRotation) * m_driveDirection));
      }
+
+     /**
+      * This method toggles the active driving direction of the robot.
+      */
+      public void toggleDirection()
+      {
+         // Set the drive direction to the negative of itself.
+         // (just 1 to -1 or -1 to 1)
+         m_driveDirection = -1 * m_driveDirection;
+      }
 
      /**
       * Stops the motors on the drivetrain
       */
      public void stop()
      {
+        // Stop the drivetrain.
         m_drive.stopMotor();
      }
 

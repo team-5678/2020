@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 // Sub system imports
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriverStation;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Limelight;
@@ -21,6 +22,9 @@ import frc.robot.commands.ActivateIntake;
 import frc.robot.commands.ReleaseIntake;
 import frc.robot.commands.SpeedChange;
 import frc.robot.commands.Autonomous;
+import frc.robot.commands.ChangeDirection;
+import frc.robot.commands.Climb;
+import frc.robot.commands.RetractClimber;
 import frc.robot.commands.Drive;
 import frc.robot.commands.ShootBall;
 
@@ -35,6 +39,7 @@ public class RobotContainer
     private final Intake m_intake = new Intake();
     private final DriverStation m_drivestation = new DriverStation();
     private final Shooter m_shooter = new Shooter();
+    private final Climber m_climber = new Climber();
     private final Limelight m_limelight = new Limelight();
 
     // Command inits
@@ -63,13 +68,19 @@ public class RobotContainer
         m_drivestation.getPOVButton(RobotMap.Joystick.Buttons.REVERSE_BUTTON).whileHeld(new ReleaseIntake(m_intake));
 
         // Drive speed change button triggers
-        //m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.QUARTER_SPEED_BUTTON).whenPressed(new SpeedChange(m_driveTrain, RobotMap.Drivetrain.DriveSpeeds.QUARTER_SPEED));
         m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.HALF_SPEED_BUTTON).whenPressed(new SpeedChange(m_driveTrain, RobotMap.Drivetrain.DriveSpeeds.HALF_SPEED));
         m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.THREE_FOURTHS_SPEED_BUTTON).whenPressed(new SpeedChange(m_driveTrain, RobotMap.Drivetrain.DriveSpeeds.THREE_FOURTHS_SPEED));
         m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.FULL_SPEED_BUTTON).whenPressed(new SpeedChange(m_driveTrain, RobotMap.Drivetrain.DriveSpeeds.FULL_SPEED));
 
         // Shooter triggers
         m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.SHOOT_BUTTON).whileHeld(new ShootBall(m_shooter, m_intake));
+
+        // Climb buttons.
+        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.CLIMB_BUTTON).whileHeld(new Climb(m_climber));
+        m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.RETRACT_BUTTON).whileHeld(new RetractClimber(m_climber));
+
+        // Direction change button:
+        //m_drivestation.getJoystickButton(RobotMap.Joystick.Buttons.DIRECTION_BUTTON).whenPressed(new ChangeDirection(m_driveTrain));
     }
 
     /**
@@ -77,7 +88,6 @@ public class RobotContainer
      */
     public void periodic()
     {
-    
     }
 
     /**
