@@ -38,10 +38,7 @@ public class ShootBall extends CommandBase
     {
         m_shooter.shoot();
         m_intake.intakeBall();
-        System.out.println("Shooter and intake have ran!\n");
     }
-
-
 
     // Stops the motors when the command ends
     @Override

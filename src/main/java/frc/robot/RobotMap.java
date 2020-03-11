@@ -29,19 +29,19 @@ public final class RobotMap
     public static class Intake
     {
         public static final int MOTOR_PORT = 1; 
-        public static final double MOTOR_SPEED = 0.25;
+        public static final double MOTOR_SPEED = 0.5;
     }
 
     public static class Shooter
     {
         public static final int MOTOR_PORT = 0; // y split the sparks, reverse polarity on one
-        public static final double MOTOR_SPEED = 1.0; // temp position, runs at full speed, be careful!
+        public static final double MOTOR_SPEED = -1; // temp position, runs at full speed, be careful!
     }
 
     public static class Climber
     {
         public static final int MOTOR_PORT = 2; 
-        public static final double MOTOR_SPEED = 0.25; // temp speed
+        public static final double MOTOR_SPEED = 0.5; // temp speed
     }
 
     public static class ColorWheel
@@ -60,17 +60,23 @@ public final class RobotMap
         public static class Buttons
         {
             // Intake related buttons
-            public static final int INTAKE_BUTTON = 0; // temp position, stright up of the POV hat
-            public static final int REVERSE_BUTTON = 180; // temp position, stright down of the POV hat
+            public static final int INTAKE_BUTTON = 0; // Straight up of the POV hat
+            public static final int REVERSE_BUTTON = 180; // Straight down of the POV hat
 
             // Speed change buttons
-            //public static final int QUARTER_SPEED_BUTTON = 1; // k uh this is gonna be disabled for a while, button will used for shooter
-            public static final int HALF_SPEED_BUTTON = 2; // temp position
-            public static final int THREE_FOURTHS_SPEED_BUTTON = 3; // temp position
-            public static final int FULL_SPEED_BUTTON = 4; // temp position
+            public static final int HALF_SPEED_BUTTON = 2;
+            public static final int THREE_FOURTHS_SPEED_BUTTON = 3;
+            public static final int FULL_SPEED_BUTTON = 4;
 
             // Shooter related buttons
-            public static final int SHOOT_BUTTON = 1; // temp position
+            public static final int SHOOT_BUTTON = 8;
+
+            // Climb buttons.
+            public static final int CLIMB_BUTTON = 14;
+            public static final int RETRACT_BUTTON = 13;
+
+            // Direction toggle is set to the toggle.
+            public static final int DIRECTION_BUTTON = 1;
         }
     }
 }
